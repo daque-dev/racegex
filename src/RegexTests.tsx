@@ -16,9 +16,7 @@ function RegexTests({ regex }: RegexTestProps) {
         result.push({ text: matched![i - 1], matched: true });
         result.push({ text: nonMatched[i], matched: false });
       }
-      const success = test.shouldMatch
-        ? nonMatched.filter((e) => e !== "").length === 0
-        : matched?.length === 0;
+      const success = nonMatched.filter((e) => e !== "").length === 0;
       return {
         content: result,
         success
@@ -47,20 +45,37 @@ function RegexTests({ regex }: RegexTestProps) {
 
   return (
     <>
-      {tests.map((test) => (
-        <div
-          className={
-            "regex-test" +
-            (test.success ? " successful" : "") +
-            (test.shouldMatch ? " matcheable" : " non-matcheable")
-          }
-          key={test.id.replace(/\s/, "")}
-        >
-          {test.content.map((e) => (
-            <p className={e.matched ? "matched" : ""}>{e.text}</p>
-          ))}
-        </div>
-      ))}
+      <h2>Should match</h2>
+      {tests
+        .filter((e) => e.shouldMatch)
+        .map((test) => (
+          <div
+            className={
+              "regex-test matcheable" + (test.success ? " successful" : "")
+            }
+            key={test.id.replace(/\s/, "")}
+          >
+            {test.content.map((e) => (
+              <p className={e.matched ? "matched" : ""}>{e.text}</p>
+            ))}
+          </div>
+        ))}
+
+      <h2>Shouldn't match</h2>
+      {tests
+        .filter((e) => !e.shouldMatch)
+        .map((test) => (
+          <div
+            className={
+              "regex-test non-matcheable" + (test.success ? " successful" : "")
+            }
+            key={test.id.replace(/\s/, "")}
+          >
+            {test.content.map((e) => (
+              <p className={e.matched ? "matched" : ""}>{e.text}</p>
+            ))}
+          </div>
+        ))}
     </>
   );
 }

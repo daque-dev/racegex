@@ -42,14 +42,15 @@ div.regex-test {
   padding: 1em;
   border: 1px solid #d8d8d8;
   border-radius: 5px;
-  &.successful {
-    background-color: lime;
-  }
   &.matcheable {
-    background-color: #b8db85;
+    &.successful {
+      background-color: #b8db85;
+    }
   }
   &.non-matcheable {
-    background-color: #db8585;
+    &.successful {
+      background-color: #db8585;
+    }
   }
   p {
     letter-spacing: 2px;
