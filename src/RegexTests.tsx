@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import data from "./tests.json";
 
 import "./App.scss";
@@ -49,7 +49,7 @@ function RegexTests({ regex, children }: RegexTestProps) {
   const getRandomItem = <T extends unknown>(arr: any[]): T =>
     arr[Math.floor(Math.random() * arr.length)];
 
-  const parsedTests = getRandomItem<RegexTest>(data);
+  const [parsedTests] = useState(getRandomItem<RegexTest>(data));
   const tests = {
     ...parsedTests,
     visible: {
