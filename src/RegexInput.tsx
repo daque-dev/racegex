@@ -33,34 +33,40 @@ function RegexInput({ setRegex }: RegexInputProps) {
   useEffect(() => {
     handleSetRegex(userRegex, flags);
   }, [flags, userRegex, handleSetRegex]);
-
+  var userRegexWidth = userRegex.length + "ch";
+  var spacerSty = { width: userRegexWidth };
   return (
     <form onSubmit={(event) => event.preventDefault()}>
-      <label>Your regex:</label>
-      {"     "}/
-      <input
-        type="text"
-        onChange={(event) => setUserRegex(event.target.value)}
-      ></input>
-      /
-      <button
-        className={flags.g ? "active" : "inactive"}
-        onClick={() => setFlags({ ...flags, g: !flags.g })}
-      >
-        g
-      </button>
-      <button
-        className={flags.i ? "active" : "inactive"}
-        onClick={() => setFlags({ ...flags, i: !flags.i })}
-      >
-        i
-      </button>
-      <button
-        className={flags.m ? "active" : "inactive"}
-        onClick={() => setFlags({ ...flags, m: !flags.m })}
-      >
-        m
-      </button>
+      <div className="regex-input-container">
+        /
+        <input
+          type="text"
+          style={spacerSty}
+          onChange={(event) => setUserRegex(event.target.value)}
+        ></input>
+        /{(flags.g ? "g" : "") + (flags.i ? "i" : "") + (flags.m ? "m" : "")}
+      </div>
+      <div className="flags-container">
+        Flags:
+        <button
+          className={flags.g ? "active" : "inactive"}
+          onClick={() => setFlags({ ...flags, g: !flags.g })}
+        >
+          g
+        </button>
+        <button
+          className={flags.i ? "active" : "inactive"}
+          onClick={() => setFlags({ ...flags, i: !flags.i })}
+        >
+          i
+        </button>
+        <button
+          className={flags.m ? "active" : "inactive"}
+          onClick={() => setFlags({ ...flags, m: !flags.m })}
+        >
+          m
+        </button>
+      </div>
     </form>
   );
 }

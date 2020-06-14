@@ -67,14 +67,6 @@ div.regex-test {
 }
 
 form {
-  input[type="text"] {
-    min-width: 0;
-    width: unset;
-    width: fit-content;
-    background-color: transparent;
-    border: none;
-    height: 2em;
-  }
   button {
     border: none;
     margin: 4px;
@@ -84,6 +76,9 @@ form {
     justify-content: center;
     align-items: center;
     border-radius: 2px;
+    &:hover {
+      cursor: pointer;
+    }
     &.active {
       background-color: #b8db85;
     }
@@ -92,6 +87,30 @@ form {
     }
     &:focus {
       outline: 0;
+    }
+  }
+}
+
+.flags-container {
+  background: #e3e3e3;
+  padding: 0.5em 1em;
+}
+
+.regex-input-container {
+  padding: 0.5em 1em;
+  color: gray;
+  font-weight: bold;
+  input[type="text"] {
+    min-width: 0;
+    background-color: transparent;
+    border: none;
+    height: 2em;
+    padding: 0.5em;
+
+    font-family: monospace;
+    font-weight: bold;
+    &:focus {
+      outline: none;
     }
   }
 }
