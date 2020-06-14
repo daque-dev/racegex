@@ -1,10 +1,14 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 type RegexInputProps = {
   setRegex: Function;
 };
 
 function RegexInput({ setRegex }: RegexInputProps) {
+  const [flags, setFlags] = useState({ g: true, i: true, m: true });
+  const [userRegex, setUserRegex] = useState("");
+  const [validInput, setValidInput] = useState(true);
+
   const handleSetRegex = useCallback(
     (userRegex: string, flags: { g: boolean; i: boolean; m: boolean }) => {
       if (userRegex === "") {
@@ -30,27 +34,29 @@ function RegexInput({ setRegex }: RegexInputProps) {
     [setRegex]
   );
 
-  const [flags, setFlags] = useState({ g: true, i: true, m: true });
-  const [userRegex, setUserRegex] = useState("");
-  const [validInput, setValidInput] = useState(true);
-
   useEffect(() => {
     handleSetRegex(userRegex, flags);
   }, [flags, userRegex, handleSetRegex]);
 
-  var userRegexWidth = userRegex.length + "ch";
-  var spacerSty = { width: userRegexWidth };
+  const inputRef = useRef((null as unknown) as HTMLInputElement);
+
   return (
     <form onSubmit={(event) => event.preventDefault()}>
       <div
         className={
           "regex-input-container " + (validInput ? "valid" : "invalid")
         }
+        onClick={() => inputRef.current.focus()}
       >
         /
         <input
+          autoFocus
+          ref={inputRef}
           type="text"
-          style={spacerSty}
+          placeholder="[\w]+"
+          style={{
+            width: (userRegex.length > 0 ? userRegex.length : "5") + "ch"
+          }}
           onChange={(event) => setUserRegex(event.target.value)}
         ></input>
         /{(flags.g ? "g" : "") + (flags.i ? "i" : "") + (flags.m ? "m" : "")}
