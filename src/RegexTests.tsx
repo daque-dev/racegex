@@ -65,7 +65,16 @@ function RegexTests({ regex, children }: RegexTestProps) {
     <>
       <p>{tests.description}</p>
       {children}
-      <h2>Should match</h2>
+      <h2>
+        Should match{" "}
+        <span className="score">
+          {(tests.visible["should-match"] as IndividualTest[]).reduce(
+            (acc, cur) => (cur.success ? acc + 1 : acc),
+            0
+          )}{" "}
+          / {tests.visible["should-match"].length}
+        </span>
+      </h2>
       {(tests.visible["should-match"] as IndividualTest[]).map((test) => (
         <div
           className={
