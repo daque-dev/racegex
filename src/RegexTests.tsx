@@ -2,8 +2,11 @@ import React from "react";
 
 import "./App.css";
 
-function RegexTests() {
-  const regex = /oomer/;
+type RegexTestProps = {
+  regex: RegExp;
+};
+
+function RegexTests({ regex }: RegexTestProps) {
   const tests = ["boomer", "zoomer", "coomer", "the consoomer", "migueloomert"];
   return (
     <div>
