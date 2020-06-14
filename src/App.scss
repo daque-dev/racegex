@@ -37,11 +37,58 @@
   }
 }
 
-li p {
-  display: inline;
+div.regex-test {
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  &.successful {
+    background-color: lime;
+  }
+  &.matcheable {
+    background-color: #b8db85;
+  }
+  &.non-matcheable {
+    background-color: #db8585;
+  }
+  p {
+    letter-spacing: 2px;
+    padding-left: 2px;
+    display: inline;
+    border-radius: 2px;
+    &.matched {
+      background-color: #118ab2;
+      color: white;
+    }
+  }
 }
 
-li p.matched {
-  background-color: green;
-  color: white;
+form {
+  input[type="text"] {
+    min-width: 0;
+    width: unset;
+    width: fit-content;
+    background-color: transparent;
+    border: none;
+    height: 2em;
+  }
+  button {
+    border: none;
+    margin: 4px;
+    height: 2em;
+    width: 2em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    &.active {
+      background-color: #b8db85;
+    }
+    &.inactive {
+      background-color: lightgray;
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
 }
