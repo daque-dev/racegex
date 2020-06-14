@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import data from "./tests.json";
+import ReactMarkdown from "react-markdown";
 
 import "./App.scss";
 
@@ -71,7 +72,7 @@ function RegexTests({ regex, children }: RegexTestProps) {
   };
   return (
     <>
-      <p>{tests.description}</p>
+      <ReactMarkdown source={tests.description} />
       {children}
       <h2>
         Should match{" "}

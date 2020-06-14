@@ -106,7 +106,15 @@ form {
     margin-left: auto;
   }
 }
-
+code,
+pre {
+  background: #e8e8e8;
+  font-size: 0.9em;
+  padding: 0.2em 0.5em;
+}
+li {
+  line-height: 1.5em;
+}
 .regex-input-container {
   padding: 0.5em 1em;
   color: gray;

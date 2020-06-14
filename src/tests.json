@@ -1,6 +1,6 @@
 [
   {
-    "description": "Match the valid emails. For now, it suffices to check that it has a user, a domain, and a domain extension.",
+    "description": "## Find the valid emails\nThis is a simple regex, in the sense that we won't compare it against strict standards.\n\nA valid email address looks like: `{user}@{domain}`.\n\n- A user can contain any character, except for `@`.\n- A `domain` must contain a `domain extension`, separated by `.`. (It doesn't matter if it's a valid TDL.)\n- A `domain` can contain a `subdomain`, separated by `.`",
     "visible": {
       "should-match": [
         "janedoe@mydomain.com",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "description": "Match the valid websites. For now, it suffices to check that it has a protocol, can contain a subdomain, must have a domain, and a domain extension.",
+    "description": "## Find the valid websites\nThis is a simple regex, in the sense that we won't compare it against strict standards.\n\nA valid website looks like: `{protocol}://{domain}/{path}`\n- A protocol can be either `http` or `https`\n- A `domain` must contain a `domain extension`, separated by `.`. (It doesn't matter if it's a valid TDL.)\n- A `domain` can contain a `subdomain`, separated by `.`\n- A website can contain many `paths`, separated by `/`.\n- A website can end with a `/`.",
     "visible": {
       "should-match": [
         "http://wikipedia.org/",
