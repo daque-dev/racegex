@@ -32,10 +32,13 @@ function RegexTests({ regex }: RegexTestProps) {
   };
 
   const tests = [
-    { content: "I cannot stand boomers", shouldMatch: true },
-    { content: "I'm such a zoomer, you know?", shouldMatch: true },
-    { content: "The consoomer is a boomer", shouldMatch: true },
-    { content: "I hate migueloomert the cheater", shouldMatch: false }
+    { content: "janedoe@mydomain.com", shouldMatch: true },
+    { content: "johnDoe@mysub.domain.com", shouldMatch: true },
+    { content: "JANEDOE@MYDOMAIN.COM", shouldMatch: true },
+    { content: "JA-NE.DOE@MY-DO-MAIN.COM", shouldMatch: true },
+    { content: "@mydomain.com", shouldMatch: false },
+    { content: "jane@domain", shouldMatch: false },
+    { content: "jane@.", shouldMatch: false }
   ].map((e) => ({
     id: e.content,
     shouldMatch: e.shouldMatch,
