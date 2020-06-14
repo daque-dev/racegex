@@ -31,7 +31,7 @@
       ]
     },
     "hidden": {
-      "should-match": [],
+      "should-match": ["https://domain.tdl/dir/dir/dir/"],
       "should-not-match": ["http://", "https://wikipedia.", "http://.org"]
     }
   }

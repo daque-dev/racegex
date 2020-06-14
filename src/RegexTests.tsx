@@ -59,6 +59,14 @@ function RegexTests({ regex, children }: RegexTestProps) {
       "should-not-match": (parsedTests.visible[
         "should-not-match"
       ] as string[]).map(separateTests)
+    },
+    hidden: {
+      "should-match": (parsedTests.hidden["should-match"] as string[]).map(
+        separateTests
+      ),
+      "should-not-match": (parsedTests.hidden[
+        "should-not-match"
+      ] as string[]).map(separateTests)
     }
   };
   return (
@@ -75,6 +83,14 @@ function RegexTests({ regex, children }: RegexTestProps) {
           / {tests.visible["should-match"].length}
         </span>
       </h2>
+      <h4>
+        Hidden tests:{" "}
+        {(tests.hidden["should-match"] as IndividualTest[]).reduce(
+          (acc, cur) => (cur.success ? acc + 1 : acc),
+          0
+        )}
+        /{tests.hidden["should-match"].length}
+      </h4>
       {(tests.visible["should-match"] as IndividualTest[]).map((test) => (
         <div
           className={
@@ -86,8 +102,28 @@ function RegexTests({ regex, children }: RegexTestProps) {
           ))}
         </div>
       ))}
+      <hr />
+      <h2>
+        Shouldn't match{" "}
+        <span className="score">
+          {tests.visible["should-not-match"].length -
+            (tests.visible["should-not-match"] as IndividualTest[]).reduce(
+              (acc, cur) => (cur.success ? acc + 1 : acc),
+              0
+            )}{" "}
+          / {tests.visible["should-not-match"].length}
+        </span>
+      </h2>
 
-      <h2>Shouldn't match</h2>
+      <h4>
+        Hidden tests:{" "}
+        {tests.hidden["should-not-match"].length -
+          (tests.hidden["should-not-match"] as IndividualTest[]).reduce(
+            (acc, cur) => (cur.success ? acc + 1 : acc),
+            0
+          )}
+        /{tests.hidden["should-not-match"].length}
+      </h4>
       {(tests.visible["should-not-match"] as IndividualTest[]).map((test) => (
         <div
           className={
