@@ -8,4 +8,9 @@ and this project adheres to
 
 ## [`Unreleased`]
 
+### Added
+
+- Basic functionality to use a very simple regex in the input field and test it
+  against a list of inputs.
+
 [`unreleased`]: https://github.com/daque-dev/regex/tree/develop
