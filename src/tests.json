@@ -1,0 +1,38 @@
+[
+  {
+    "description": "Match the valid emails. For now, it suffices to check that it has a user, a domain, and a domain extension.",
+    "visible": {
+      "should-match": [
+        "janedoe@mydomain.com",
+        "johnDoe@mysub.domain.com",
+        "JANEDOE@MYDOMAIN.COM",
+        "JA-NE.DOE@MY-DO-MAIN.COM"
+      ],
+      "should-not-match": ["@mydomain.com", "jane@domain", "jane@."]
+    },
+    "hidden": {
+      "should-match": ["W1.-_2@1weSwe.sd"],
+      "should-not-match": ["@", ".@.@.", "@@"]
+    }
+  },
+  {
+    "description": "Match the valid websites. For now, it suffices to check that it has a protocol, can contain a subdomain, must have a domain, and a domain extension.",
+    "visible": {
+      "should-match": [
+        "http://wikipedia.org/",
+        "https://www.wikipedia.org/",
+        "https://www.wiki.pedia.org",
+        "https://www.1234.567.89"
+      ],
+      "should-not-match": [
+        "htp://wikipedia.org/",
+        "wikipedia.org",
+        "https://wikipedia"
+      ]
+    },
+    "hidden": {
+      "should-match": [],
+      "should-not-match": ["http://", "https://wikipedia.", "http://.org"]
+    }
+  }
+]

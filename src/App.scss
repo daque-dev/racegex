@@ -1,5 +1,7 @@
-.App {
-  text-align: center;
+#root {
+  margin: auto;
+  width: 70%;
+  max-width: 1600px;
 }
 
 .App-logo {
@@ -38,7 +40,7 @@
 }
 
 div.regex-test {
-  margin: 1em;
+  margin: 1em 0;
   padding: 1em;
   border: 1px solid #d8d8d8;
   border-radius: 5px;

@@ -1,16 +1,34 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import data from "./tests.json";
 
 import "./App.scss";
 
 type RegexTestProps = {
   regex: RegExp;
+  children: ReactNode;
 };
 
-function RegexTests({ regex }: RegexTestProps) {
-  const separateTests = (test: { content: string; shouldMatch: boolean }) => {
-    if (test.content.match(regex)) {
-      const nonMatched = test.content.split(regex);
-      const matched = test.content.match(regex);
+type RegexTest = {
+  description: string;
+  visible: RegexTestMatches;
+  hidden: RegexTestMatches;
+};
+
+type RegexTestMatches = {
+  "should-match": string[] | IndividualTest[];
+  "should-not-match": string[] | IndividualTest[];
+};
+
+type IndividualTest = {
+  content: { text: string; matched: boolean }[];
+  success: boolean;
+};
+
+function RegexTests({ regex, children }: RegexTestProps) {
+  const separateTests = (test: string) => {
+    if (test.match(regex)) {
+      const nonMatched = test.split(regex);
+      const matched = test.match(regex);
       let result = [{ text: nonMatched[0], matched: false }];
       for (let i = 1; i < nonMatched.length; i++) {
         result.push({ text: matched![i - 1], matched: true });
@@ -24,58 +42,54 @@ function RegexTests({ regex }: RegexTestProps) {
     }
 
     return {
-      content: [{ text: test.content, matched: false }],
+      content: [{ text: test, matched: false }],
       success: false
     };
   };
+  const getRandomItem = <T extends unknown>(arr: any[]): T =>
+    arr[Math.floor(Math.random() * arr.length)];
 
-  const tests = [
-    { content: "janedoe@mydomain.com", shouldMatch: true },
-    { content: "johnDoe@mysub.domain.com", shouldMatch: true },
-    { content: "JANEDOE@MYDOMAIN.COM", shouldMatch: true },
-    { content: "JA-NE.DOE@MY-DO-MAIN.COM", shouldMatch: true },
-    { content: "@mydomain.com", shouldMatch: false },
-    { content: "jane@domain", shouldMatch: false },
-    { content: "jane@.", shouldMatch: false }
-  ].map((e) => ({
-    id: e.content,
-    shouldMatch: e.shouldMatch,
-    ...separateTests(e)
-  }));
-
+  const parsedTests = getRandomItem<RegexTest>(data);
+  const tests = {
+    ...parsedTests,
+    visible: {
+      "should-match": (parsedTests.visible["should-match"] as string[]).map(
+        separateTests
+      ),
+      "should-not-match": (parsedTests.visible[
+        "should-not-match"
+      ] as string[]).map(separateTests)
+    }
+  };
   return (
     <>
+      <p>{tests.description}</p>
+      {children}
       <h2>Should match</h2>
-      {tests
-        .filter((e) => e.shouldMatch)
-        .map((test) => (
-          <div
-            className={
-              "regex-test matcheable" + (test.success ? " successful" : "")
-            }
-            key={test.id.replace(/\s/, "")}
-          >
-            {test.content.map((e) => (
-              <p className={e.matched ? "matched" : ""}>{e.text}</p>
-            ))}
-          </div>
-        ))}
+      {(tests.visible["should-match"] as IndividualTest[]).map((test) => (
+        <div
+          className={
+            "regex-test matcheable" + (test.success ? " successful" : "")
+          }
+        >
+          {test.content.map((e) => (
+            <p className={e.matched ? "matched" : ""}>{e.text}</p>
+          ))}
+        </div>
+      ))}
 
       <h2>Shouldn't match</h2>
-      {tests
-        .filter((e) => !e.shouldMatch)
-        .map((test) => (
-          <div
-            className={
-              "regex-test non-matcheable" + (test.success ? " successful" : "")
-            }
-            key={test.id.replace(/\s/, "")}
-          >
-            {test.content.map((e) => (
-              <p className={e.matched ? "matched" : ""}>{e.text}</p>
-            ))}
-          </div>
-        ))}
+      {(tests.visible["should-not-match"] as IndividualTest[]).map((test) => (
+        <div
+          className={
+            "regex-test non-matcheable" + (test.success ? " successful" : "")
+          }
+        >
+          {test.content.map((e) => (
+            <p className={e.matched ? "matched" : ""}>{e.text}</p>
+          ))}
+        </div>
+      ))}
     </>
   );
 }
