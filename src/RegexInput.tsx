@@ -8,7 +8,7 @@ function RegexInput({ setRegex }: RegexInputProps) {
   const handleInputChange = (e: ChangeEvent) => {
     const value = (e as ChangeEvent<HTMLInputElement>).target.value;
     try {
-      const regex = new RegExp(value);
+      const regex = new RegExp(`(?<pre>.*)(?<match>${value})(?<post>.*)`);
       setRegex(regex);
     } catch {}
   };
