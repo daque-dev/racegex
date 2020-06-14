@@ -6,26 +6,20 @@ type RegexTestProps = {
   regex: RegExp;
 };
 
-type CustomRegex = {
-  id: string;
-  pre: string;
-  match: string;
-  post: string;
-};
-
 function RegexTests({ regex }: RegexTestProps) {
   const separateTests = (test: string) => {
     if (test.match(regex)) {
-      const { pre, match, post } = test.match(regex)?.groups as CustomRegex;
-      return {
-        id: test,
-        pre,
-        match,
-        post
-      };
+      const nonMatched = test.split(regex);
+      const matched = test.match(regex);
+      let result = [{ text: nonMatched[0], matched: false }];
+      for (let i = 1; i < nonMatched.length; i++) {
+        result.push({ text: matched![i - 1], matched: true });
+        result.push({ text: nonMatched[i], matched: false });
+      }
+      return result;
     }
 
-    return { id: test, pre: test, match: "", post: "" };
+    return [{ text: test, matched: false }];
   };
 
   const tests = [
@@ -34,15 +28,15 @@ function RegexTests({ regex }: RegexTestProps) {
     "coomer",
     "the consoomer",
     "migueloomert"
-  ].map(separateTests);
+  ].map((e) => ({ id: e, content: separateTests(e) }));
 
   return (
     <div>
       {tests.map((test) => (
         <li key={test.id}>
-          <p>{test.pre}</p>
-          <p style={{ fontWeight: "bold" }}>{test.match}</p>
-          <p>{test.post}</p>
+          {test.content.map((e) => (
+            <p className={e.matched ? "matched" : ""}>{e.text}</p>
+          ))}
         </li>
       ))}
     </div>
