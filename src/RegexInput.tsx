@@ -20,8 +20,11 @@ function RegexInput({ setRegex }: RegexInputProps) {
             }
           }
           const regex = new RegExp(`${userRegex}`, flagsString);
+          setValidInput(true);
           setRegex(regex);
-        } catch {}
+        } catch {
+          setValidInput(false);
+        }
       }
     },
     [setRegex]
@@ -29,15 +32,21 @@ function RegexInput({ setRegex }: RegexInputProps) {
 
   const [flags, setFlags] = useState({ g: true, i: true, m: true });
   const [userRegex, setUserRegex] = useState("");
+  const [validInput, setValidInput] = useState(true);
 
   useEffect(() => {
     handleSetRegex(userRegex, flags);
   }, [flags, userRegex, handleSetRegex]);
+
   var userRegexWidth = userRegex.length + "ch";
   var spacerSty = { width: userRegexWidth };
   return (
     <form onSubmit={(event) => event.preventDefault()}>
-      <div className="regex-input-container">
+      <div
+        className={
+          "regex-input-container " + (validInput ? "valid" : "invalid")
+        }
+      >
         /
         <input
           type="text"
@@ -66,6 +75,9 @@ function RegexInput({ setRegex }: RegexInputProps) {
         >
           m
         </button>
+        <div className="regex-input-valid">
+          {validInput ? "Valid " : "Invalid "} expression
+        </div>
       </div>
     </form>
   );

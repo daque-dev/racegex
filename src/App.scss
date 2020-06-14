@@ -92,8 +92,15 @@ form {
 }
 
 .flags-container {
-  background: #e3e3e3;
+  display: flex;
+  align-items: center;
   padding: 0.5em 1em;
+
+  background: #e3e3e3;
+  div.regex-input-valid {
+    display: inline-block;
+    margin-left: auto;
+  }
 }
 
 .regex-input-container {
@@ -112,5 +119,11 @@ form {
     &:focus {
       outline: none;
     }
+  }
+  &.valid {
+    background: #b8db85;
+  }
+  &.invalid {
+    background: #e0a9a9;
   }
 }
