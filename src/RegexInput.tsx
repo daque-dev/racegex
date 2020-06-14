@@ -7,10 +7,14 @@ type RegexInputProps = {
 function RegexInput({ setRegex }: RegexInputProps) {
   const handleInputChange = (e: ChangeEvent) => {
     const value = (e as ChangeEvent<HTMLInputElement>).target.value;
-    try {
-      const regex = new RegExp(`${value}`, "g");
-      setRegex(regex);
-    } catch {}
+    if (value === "") {
+      setRegex((null as unknown) as RegExp);
+    } else {
+      try {
+        const regex = new RegExp(`${value}`, "g");
+        setRegex(regex);
+      } catch {}
+    }
   };
 
   return (
