@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import RegexInput from "./RegexInput";
-import RegexTests from "./RegexTests";
+import RegexInput from "./RegexInput/RegexInput";
+import RegexTests from "./RegexTests/RegexTests";
 
 import "./App.scss";
 

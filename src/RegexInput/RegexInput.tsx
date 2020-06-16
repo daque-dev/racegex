@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
+import styles from "./RegexInput.module.scss";
+
 type RegexInputProps = {
   setRegex: Function;
 };
@@ -44,7 +46,9 @@ function RegexInput({ setRegex }: RegexInputProps) {
     <form onSubmit={(event) => event.preventDefault()}>
       <div
         className={
-          "regex-input-container " + (validInput ? "valid" : "invalid")
+          styles["regex-input-container"] +
+          " " +
+          (validInput ? styles["valid"] : styles["invalid"])
         }
         onClick={() => inputRef.current.focus()}
       >
@@ -61,27 +65,27 @@ function RegexInput({ setRegex }: RegexInputProps) {
         ></input>
         /{(flags.g ? "g" : "") + (flags.i ? "i" : "") + (flags.m ? "m" : "")}
       </div>
-      <div className="flags-container">
+      <div className={styles["flags-container"]}>
         Flags:
         <button
-          className={flags.g ? "active" : "inactive"}
+          className={flags.g ? styles["active"] : styles["inactive"]}
           onClick={() => setFlags({ ...flags, g: !flags.g })}
         >
           g
         </button>
         <button
-          className={flags.i ? "active" : "inactive"}
+          className={flags.i ? styles["active"] : styles["inactive"]}
           onClick={() => setFlags({ ...flags, i: !flags.i })}
         >
           i
         </button>
         <button
-          className={flags.m ? "active" : "inactive"}
+          className={flags.m ? styles["active"] : styles["inactive"]}
           onClick={() => setFlags({ ...flags, m: !flags.m })}
         >
           m
         </button>
-        <div className="regex-input-valid">
+        <div className={styles["regex-input-valid"]}>
           {validInput ? "Valid " : "Invalid "} expression
         </div>
       </div>

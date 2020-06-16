@@ -1,0 +1,57 @@
+$background: #f6f6f6;
+$green: #b8db85;
+$red: #e0a9a9;
+
+.container {
+  margin-top: 1em;
+  border-radius: 5px;
+  background-color: $background;
+  &.should-match {
+    .title,
+    .test-block.successful {
+      background: $green !important;
+    }
+  }
+  &.should-not-match {
+    .title,
+    .test-block.successful {
+      background: $red !important;
+    }
+  }
+
+  .header {
+    background: darken($background, 5%);
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0.5em 1em;
+      input {
+        margin-left: auto;
+      }
+      .title {
+        margin-left: -0.5em;
+        padding: 0.5em 1em;
+      }
+      .score {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+      }
+      .test-block {
+        &:last-child {
+          margin-right: 1em;
+        }
+        margin-left: 0.375em;
+        height: 0.75em;
+        width: 0.75em;
+
+        border-radius: 50%;
+        background: darken($background, 15%);
+        &.successful {
+          background: $green;
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
 import React, { ReactNode, useState } from "react";
-import data from "./tests.json";
+import data from "../tests.json";
 import ReactMarkdown from "react-markdown";
-
-import "./App.scss";
+import TestSet from "./TestSet/TestSet";
 
 type RegexTestProps = {
   regex: RegExp;
@@ -74,68 +73,21 @@ function RegexTests({ regex, children }: RegexTestProps) {
     <>
       <ReactMarkdown source={tests.description} />
       {children}
-      <h2>
-        Should match{" "}
-        <span className="score">
-          {(tests.visible["should-match"] as IndividualTest[]).reduce(
-            (acc, cur) => (cur.success ? acc + 1 : acc),
-            0
-          )}{" "}
-          / {tests.visible["should-match"].length}
-        </span>
-      </h2>
-      <h4>
-        Hidden tests:{" "}
-        {(tests.hidden["should-match"] as IndividualTest[]).reduce(
-          (acc, cur) => (cur.success ? acc + 1 : acc),
-          0
-        )}
-        /{tests.hidden["should-match"].length}
-      </h4>
-      {(tests.visible["should-match"] as IndividualTest[]).map((test) => (
-        <div
-          className={
-            "regex-test matcheable" + (test.success ? " successful" : "")
-          }
-        >
-          {test.content.map((e) => (
-            <p className={e.matched ? "matched" : ""}>{e.text}</p>
-          ))}
-        </div>
-      ))}
-      <hr />
-      <h2>
-        Shouldn't match{" "}
-        <span className="score">
-          {tests.visible["should-not-match"].length -
-            (tests.visible["should-not-match"] as IndividualTest[]).reduce(
-              (acc, cur) => (cur.success ? acc + 1 : acc),
-              0
-            )}{" "}
-          / {tests.visible["should-not-match"].length}
-        </span>
-      </h2>
 
-      <h4>
-        Hidden tests:{" "}
-        {tests.hidden["should-not-match"].length -
-          (tests.hidden["should-not-match"] as IndividualTest[]).reduce(
-            (acc, cur) => (cur.success ? acc + 1 : acc),
-            0
-          )}
-        /{tests.hidden["should-not-match"].length}
-      </h4>
-      {(tests.visible["should-not-match"] as IndividualTest[]).map((test) => (
-        <div
-          className={
-            "regex-test non-matcheable" + (test.success ? " successful" : "")
-          }
-        >
-          {test.content.map((e) => (
-            <p className={e.matched ? "matched" : ""}>{e.text}</p>
-          ))}
-        </div>
-      ))}
+      <TestSet
+        shouldMatch={true}
+        tests={{
+          visible: tests.visible["should-match"],
+          hidden: tests.hidden["should-match"]
+        }}
+      ></TestSet>
+      <TestSet
+        shouldMatch={false}
+        tests={{
+          visible: tests.visible["should-not-match"],
+          hidden: tests.hidden["should-not-match"]
+        }}
+      ></TestSet>
     </>
   );
 }
