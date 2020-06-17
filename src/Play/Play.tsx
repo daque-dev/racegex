@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import "./Play.scss";
-import RegexTests from "../RegexTests/RegexTests";
-import RegexInput from "../RegexInput/RegexInput";
+import RegexTests from "./RegexTests/RegexTests";
+import RegexInput from "./RegexInput/RegexInput";
 
 function Play() {
   const [regex, setRegex] = useState((null as unknown) as RegExp);

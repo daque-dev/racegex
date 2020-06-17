@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import styles from "./TestSet.module.scss";
-import { IndividualTest } from "../../types";
+import { IndividualTest } from "../../../types";
 
 type TestSetProps = {
   shouldMatch: boolean;
@@ -56,14 +56,12 @@ function TestSet({ shouldMatch, tests }: TestSetProps) {
         .filter((e) => (hideSuccessful ? !e.success : true))
         .map((test) => (
           <div
-            className={
-              "regex-test " +
-              (shouldMatch ? "matcheable" : "non-matcheable") +
-              (test.success ? " successful" : "")
-            }
+            className={`${styles["regex-test"]} ${
+              shouldMatch ? styles["matcheable"] : styles["non-matcheable"]
+            } ${test.success ? styles["successful"] : ""}`}
           >
             {test.content.map((e) => (
-              <p className={e.matched ? "matched" : ""}>{e.text}</p>
+              <p className={e.matched ? styles["matched"] : ""}>{e.text}</p>
             ))}
           </div>
         ))}
