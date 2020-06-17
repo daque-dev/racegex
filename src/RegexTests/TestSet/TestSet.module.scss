@@ -54,4 +54,31 @@ $red: #e0a9a9;
       }
     }
   }
+
+  div.regex-test {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    &.matcheable {
+      &.successful {
+        background-color: #b8db85;
+      }
+    }
+    &.non-matcheable {
+      &.successful {
+        background-color: #db8585;
+      }
+    }
+    p {
+      letter-spacing: 2px;
+      padding-left: 2px;
+      display: inline;
+      border-radius: 2px;
+      &.matched {
+        background-color: #118ab2;
+        color: white;
+      }
+    }
+  }
 }
