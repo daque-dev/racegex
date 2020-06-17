@@ -2,26 +2,11 @@ import React, { ReactNode, useState } from "react";
 import data from "../tests.json";
 import ReactMarkdown from "react-markdown";
 import TestSet from "./TestSet/TestSet";
+import { RegexTest } from "../types.js";
 
 type RegexTestProps = {
   regex: RegExp;
   children: ReactNode;
-};
-
-type RegexTest = {
-  description: string;
-  visible: RegexTestMatches;
-  hidden: RegexTestMatches;
-};
-
-type RegexTestMatches = {
-  "should-match": string[] | IndividualTest[];
-  "should-not-match": string[] | IndividualTest[];
-};
-
-type IndividualTest = {
-  content: { text: string; matched: boolean }[];
-  success: boolean;
 };
 
 function RegexTests({ regex, children }: RegexTestProps) {

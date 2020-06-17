@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 
 import styles from "./TestSet.module.scss";
-
-type IndividualTest = {
-  content: { text: string; matched: boolean }[];
-  success: boolean;
-};
+import { IndividualTest } from "../../types";
 
 type TestSetProps = {
   shouldMatch: boolean;
