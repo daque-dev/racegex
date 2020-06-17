@@ -8,7 +8,7 @@ function Home() {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/join">Play</Link>
+        <Link to="/join">Join a room</Link>
       </li>
       <li>
         <Link to={`/play/${randomRoom()}`}>Create new room</Link>
