@@ -9,10 +9,14 @@ type RegexTestProps = {
   children: ReactNode;
 };
 
+const WrapperString = "þð“~ßł";
+
 function RegexTests({ regex, children }: RegexTestProps) {
   const separateTests = (test: string) => {
     if (test.match(regex)) {
-      const replacedText = test.replace(regex, "|||$1|||").split("|||");
+      const replacedText = test
+        .replace(regex, `${WrapperString}$1${WrapperString}`)
+        .split(WrapperString);
       let result = [];
       for (let i = 0; i < replacedText.length; i++) {
         result.push({ text: replacedText[i], matched: i % 2 === 1 });
