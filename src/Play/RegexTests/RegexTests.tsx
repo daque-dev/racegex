@@ -40,20 +40,20 @@ function RegexTests({ regex, children }: RegexTestProps) {
   const tests = {
     ...parsedTests,
     visible: {
-      "should-match": (parsedTests.visible["should-match"] as string[]).map(
+      shouldMatch: (parsedTests.visible.shouldMatch as string[]).map(
         separateTests
       ),
-      "should-not-match": (parsedTests.visible[
-        "should-not-match"
-      ] as string[]).map(separateTests)
+      shouldNotMatch: (parsedTests.visible.shouldNotMatch as string[]).map(
+        separateTests
+      )
     },
     hidden: {
-      "should-match": (parsedTests.hidden["should-match"] as string[]).map(
+      shouldMatch: (parsedTests.hidden.shouldMatch as string[]).map(
         separateTests
       ),
-      "should-not-match": (parsedTests.hidden[
-        "should-not-match"
-      ] as string[]).map(separateTests)
+      shouldNotMatch: (parsedTests.hidden.shouldNotMatch as string[]).map(
+        separateTests
+      )
     }
   };
   return (
@@ -64,15 +64,15 @@ function RegexTests({ regex, children }: RegexTestProps) {
       <TestSet
         shouldMatch={true}
         tests={{
-          visible: tests.visible["should-match"],
-          hidden: tests.hidden["should-match"]
+          visible: tests.visible.shouldMatch,
+          hidden: tests.hidden.shouldMatch
         }}
       ></TestSet>
       <TestSet
         shouldMatch={false}
         tests={{
-          visible: tests.visible["should-not-match"],
-          hidden: tests.hidden["should-not-match"]
+          visible: tests.visible.shouldNotMatch,
+          hidden: tests.hidden.shouldNotMatch
         }}
       ></TestSet>
     </>

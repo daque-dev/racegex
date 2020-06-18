@@ -10,6 +10,6 @@ export type RegexTest = {
 };
 
 export type RegexTestMatches = {
-  "should-match": string[] | IndividualTest[];
-  "should-not-match": string[] | IndividualTest[];
+  shouldMatch: string[] | IndividualTest[];
+  shouldNotMatch: string[] | IndividualTest[];
 };
