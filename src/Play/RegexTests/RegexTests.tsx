@@ -12,14 +12,12 @@ type RegexTestProps = {
 function RegexTests({ regex, children }: RegexTestProps) {
   const separateTests = (test: string) => {
     if (test.match(regex)) {
-      const nonMatched = test.split(regex);
-      const matched = test.match(regex);
-      let result = [{ text: nonMatched[0], matched: false }];
-      for (let i = 1; i < nonMatched.length; i++) {
-        result.push({ text: matched![i - 1], matched: true });
-        result.push({ text: nonMatched[i], matched: false });
+      const replacedText = test.replace(regex, "|||$1|||").split("|||");
+      let result = [];
+      for (let i = 0; i < replacedText.length; i++) {
+        result.push({ text: replacedText[i], matched: i % 2 === 1 });
       }
-      const success = nonMatched.filter((e) => e !== "").length === 0;
+      const success = replacedText.length === 3 && replacedText[1] === test;
       return {
         content: result,
         success

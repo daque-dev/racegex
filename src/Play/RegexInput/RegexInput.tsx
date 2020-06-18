@@ -25,7 +25,7 @@ function RegexInput({ setRegex }: RegexInputProps) {
               }
             }
           }
-          const regex = new RegExp(`${userRegex}`, flagsString);
+          const regex = new RegExp(`(${userRegex})`, flagsString);
           setValidInput(true);
           setRegex(regex);
         } catch {
