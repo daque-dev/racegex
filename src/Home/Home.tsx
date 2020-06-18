@@ -16,6 +16,7 @@ function Home() {
     </ul>
   );
 }
-const randomRoom = () => Math.random().toString(20).substr(2, 8);
+
+const randomRoom = () => Math.random().toString(36).substr(2, 8);
 
 export default Home;
