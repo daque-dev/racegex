@@ -36,16 +36,14 @@ function App() {
 const Join = () => {
   let room = prompt("room");
   if (!room) {
-    room = randomRoom();
-    alert("No room receiving, joining random room " + room);
+    alert("No room received");
   }
 
   return (
     <div>
-      <Redirect to={`/play/${room}`} />
+      <Redirect to={room ? `/play/${room}` : "/home"} />
     </div>
   );
 };
-const randomRoom = () => Math.random().toString(20).substr(2, 8);
 
 export default App;
