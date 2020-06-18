@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import classNames from "classnames/bind";
 
 import styles from "./TestSet.module.scss";
+
 import { IndividualTest } from "../../../types";
+
+const cx = classNames.bind(styles);
 
 type TestSetProps = {
   shouldMatch: boolean;
@@ -16,22 +20,17 @@ function TestSet({ shouldMatch, tests }: TestSetProps) {
 
   return (
     <div
-      className={`${styles.container} ${
-        styles[shouldMatch ? "should-match" : "should-not-match"]
-      }
-      `}
+      className={cx("container", { shouldMatch, shouldNotMatch: !shouldMatch })}
     >
-      <div className={styles["header"]}>
-        <div className={styles["row"]}>
-          <div className={styles["title"]}>
+      <div className={cx("header")}>
+        <div className={cx("row")}>
+          <div className={cx("title")}>
             {shouldMatch ? "Should match" : "Should not match"}
           </div>
-          <div className={styles["score"]}>
+          <div className={cx("score")}>
             {tests.visible.map((test) => (
               <div
-                className={`${styles["test-block"]} ${
-                  test.success ? styles["successful"] : ""
-                }`}
+                className={cx("test-block", { successful: test.success })}
               ></div>
             ))}
             {tests.visible.reduce(
@@ -41,7 +40,7 @@ function TestSet({ shouldMatch, tests }: TestSetProps) {
             / {tests.visible.length}
           </div>
         </div>
-        <div className={styles["row"]}>
+        <div className={cx("row")}>
           <input
             type="checkbox"
             checked={hideSuccessful}
@@ -56,12 +55,14 @@ function TestSet({ shouldMatch, tests }: TestSetProps) {
         .filter((e) => (hideSuccessful ? !e.success : true))
         .map((test) => (
           <div
-            className={`${styles["regex-test"]} ${
-              shouldMatch ? styles["matcheable"] : styles["non-matcheable"]
-            } ${test.success ? styles["successful"] : ""}`}
+            className={cx("regex-test", {
+              shouldMatch,
+              shouldNotMatch: !shouldMatch,
+              successful: test.success
+            })}
           >
-            {test.content.map((e) => (
-              <p className={e.matched ? styles["matched"] : ""}>{e.text}</p>
+            {test.content.map(({ matched, text }) => (
+              <p className={cx({ matched })}>{text}</p>
             ))}
           </div>
         ))}

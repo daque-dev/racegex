@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import "./Play.scss";
 import RegexTests from "./RegexTests/RegexTests";
 import RegexInput from "./RegexInput/RegexInput";
 import { useParams } from "react-router-dom";

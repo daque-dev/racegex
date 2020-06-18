@@ -6,13 +6,13 @@ $red: #e0a9a9;
   margin-top: 1em;
   border-radius: 5px;
   background-color: $background;
-  &.should-match {
+  &.shouldMatch {
     .title,
     .test-block.successful {
       background: $green !important;
     }
   }
-  &.should-not-match {
+  &.shouldNotMatch {
     .title,
     .test-block.successful {
       background: $red !important;
@@ -60,12 +60,12 @@ $red: #e0a9a9;
     padding: 1em;
     border: 1px solid #d8d8d8;
     border-radius: 5px;
-    &.matcheable {
+    &.shouldMatch {
       &.successful {
         background-color: #b8db85;
       }
     }
-    &.non-matcheable {
+    &.shouldNotMatch {
       &.successful {
         background-color: #db8585;
       }

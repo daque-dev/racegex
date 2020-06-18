@@ -1,7 +1,10 @@
 import React, { ReactNode, useState } from "react";
-import data from "../../tests.json";
 import ReactMarkdown from "react-markdown";
+
 import TestSet from "./TestSet/TestSet";
+
+import data from "../../tests.json";
+
 import { RegexTest } from "../../types.js";
 
 type RegexTestProps = {
