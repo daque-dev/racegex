@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import RegexTests from "./RegexTests/RegexTests";
 import RegexInput from "./RegexInput/RegexInput";
@@ -11,6 +11,20 @@ type PlayParams = {
 function Play() {
   const [regex, setRegex] = useState((null as unknown) as RegExp);
   const { room }: PlayParams = useParams();
+  const ws = useRef((null as unknown) as WebSocket);
+
+  useEffect(() => {
+    ws.current = new WebSocket("ws://localhost:4000/ws");
+    ws.current.onopen = () => {
+      ws.current.send(JSON.stringify({ message: "connected" }));
+    };
+    ws.current.onclose = () => console.log("ws closed");
+    ws.current.onmessage = ({ data }: MessageEvent) => console.log(data);
+    return () => {
+      ws.current.close();
+    };
+  }, []);
+
   return (
     <>
       <div>
