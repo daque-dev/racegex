@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,29 +7,37 @@ import {
 } from "react-router-dom";
 
 import "./App.scss";
-import Play from "./Play/Play";
-import Home from "./Home/Home";
+import Navbar from "./Navbar";
+
+const Home = lazy(() => import("./Home/Home"));
+const Play = lazy(() => import("./Play/Play"));
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/play/:room">
-            <Play />
-          </Route>
-          <Route path="/join">
-            <Join />
-          </Route>
-          <Route path="/play">
-            <Home />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <>
+      <Suspense fallback={<div>loading...</div>}>
+        <Router>
+          <Navbar />
+
+          <div>
+            <Switch>
+              <Route path="/play/:room">
+                <Play />
+              </Route>
+              <Route path="/join">
+                <Join />
+              </Route>
+              <Route path="/play">
+                <Home />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </Suspense>
+    </>
   );
 }
 
