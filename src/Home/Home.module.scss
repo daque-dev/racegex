@@ -1,0 +1,50 @@
+@import "../variables.scss";
+
+.home {
+  display: flex;
+  color: $muted-text-color;
+  width: 1200px;
+  max-width: 90%;
+  margin: auto;
+
+  align-items: center;
+  justify-content: space-between;
+
+  height: calc(100vh - 4rem);
+}
+
+.description.title,
+.interactive {
+  font-family: $monospace;
+}
+
+.description {
+  max-width: 50%;
+  .title {
+    font-size: $font-size-1 + $font-size-3;
+
+    font-weight: bold;
+
+    span {
+      font-weight: normal;
+    }
+  }
+
+  .subtitle {
+    margin-top: 1em;
+    font-size: $font-size-2;
+    font-weight: 200;
+    span {
+      text-decoration: underline;
+      text-decoration-color: $text-color;
+    }
+  }
+}
+
+.interactive {
+  word-wrap: none;
+  white-space: nowrap;
+  p {
+    display: inline !important;
+  }
+}

@@ -1,22 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useCallback } from "react";
+// @ts-ignore
+import Type from "./Type";
+
+import classnames from "classnames/bind";
+import styles from "./Home.module.scss";
+
+const cx = classnames.bind(styles);
 
 function Home() {
+  let copy = `Whether for pleasure, curiosity, or necessity, we'll help you to learn regular expressions.`;
+  const [regexes] = useState(
+    ["whe\\S+", "wh?e\\S*", "regular", "[a-z]+ity", "[a-z]*e[a-z]*", "erasure", "er?asure"].reduce(
+      (acc: any[], cur: string) => [...acc, cur, () => onFinish(cur), 1500],
+      []
+    )
+  );
+  const [regex, setRegex] = useState("");
+
+  const onFinish = useCallback(setRegex, [setRegex]);
+
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/join">Join a room</Link>
-      </li>
-      <li>
-        <Link to={`/play/${randomRoom()}`}>Create new room</Link>
-      </li>
-    </ul>
+    <div className={cx("home")}>
+      <div className={cx("description")}>
+        <div className={cx("title", "interactive")}>
+          /
+          <Type loop={Infinity} steps={regexes} />
+          /gi
+        </div>
+        <div className={cx("subtitle")}>
+          {copy
+            .replace(new RegExp(`(${regex})`, "gi"), "|$1|")
+            .split("|")
+            .map((e, i) => (i % 2 === 0 ? e : <span>{e}</span>))}
+        </div>
+      </div>
+    </div>
   );
 }
-
-const randomRoom = () => Math.random().toString(36).substr(2, 8);
 
 export default Home;
