@@ -56,7 +56,7 @@ function Play() {
   }, []);
 
   useEffect(() => {
-    ws.current = new WebSocket(`ws://${document.location.hostname}:4000/ws`);
+    ws.current = new WebSocket(`wss://${document.location.hostname}:4000/ws`);
 
     ws.current.onclose = () => console.log("ws closed");
     ws.current.onmessage = (data: MessageEvent) => handleNewMessage(data);
