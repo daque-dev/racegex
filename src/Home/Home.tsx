@@ -10,7 +10,15 @@ const cx = classnames.bind(styles);
 function Home() {
   let copy = `Whether for pleasure, curiosity, or necessity, we'll help you to learn regular expressions.`;
   const [regexes] = useState(
-    ["whe\\S+", "wh?e\\S*", "regular", "[a-z]+ity", "[a-z]*e[a-z]*", "erasure", "er?asure"].reduce(
+    [
+      "whe\\S+",
+      "wh?e\\S*",
+      "regular",
+      "[a-z]+ity",
+      "[a-z]*e[a-z]*",
+      "erasure",
+      "er?asure"
+    ].reduce(
       (acc: any[], cur: string) => [...acc, cur, () => onFinish(cur), 1500],
       []
     )
