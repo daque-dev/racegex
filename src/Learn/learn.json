@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Beginner",
+    "subtitle": "You may know what regular expressions are for, but are unfamiliar with their syntax.",
+    "levels": [
+      {
+        "title": "What regular expressions are for",
+        "subtitle": "A brief introduction"
+      },
+      { "title": "Character classes", "subtitle": "[], [a-zA-Z], [0-9]" },
+      {
+        "title": "Expression flags",
+        "subtitle": "-g, -i, -m"
+      }
+    ]
+  },
+  {
+    "title": "Intermediate",
+    "subtitle": "You are able to understand and write some regular expressions.",
+    "levels": [
+      {
+        "title": "Lookaround groups",
+        "subtitle": "(?> ), (?< )"
+      },
+      { "title": "Group capturing", "subtitle": "( ), (?= )" },
+      {
+        "title": "Zero width assertions",
+        "subtitle": ""
+      }
+    ]
+  }
+]

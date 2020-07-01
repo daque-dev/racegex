@@ -1,0 +1,30 @@
+@import "../variables.scss";
+
+.section {
+  margin-top: 50px;
+  width: 80%;
+  margin-left: auto;
+  h2 {
+    font-size: $font-size-2;
+  }
+  h3 {
+    font-size: $font-size-3;
+    font-weight: normal;
+    color: $muted-text-color;
+  }
+  hr {
+    width: 30%;
+    max-width: 200px;
+    margin-left: 0;
+  }
+  p {
+    color: $text-color;
+    font-weight: bold;
+    font-size: $font-size-4;
+    span {
+      color: $muted-text-color;
+      margin-left: 1ch;
+      font-weight: normal;
+    }
+  }
+}
