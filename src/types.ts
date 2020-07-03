@@ -13,3 +13,18 @@ export type RegexTestMatches = {
   shouldMatch: string[] | IndividualTest[];
   shouldNotMatch: string[] | IndividualTest[];
 };
+
+export type Problem = {
+  id: number;
+  name: string;
+  description: string;
+};
+
+export type Lesson = {
+  id: number;
+  name: string;
+  content: string;
+  excercises: string;
+  next?: string;
+  prev?: string;
+};
