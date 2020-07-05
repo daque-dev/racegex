@@ -39,7 +39,9 @@ function Home() {
           {copy
             .replace(new RegExp(`(${regex})`, "gi"), "|$1|")
             .split("|")
-            .map((e, i) => (i % 2 === 0 ? e : <span>{e}</span>))}
+            .map((e, i) =>
+              i % 2 === 0 ? e : <span key={`${e}-${i}`}>{e}</span>
+            )}
         </div>
       </div>
     </div>

@@ -1,11 +1,12 @@
 import axios from "axios";
 
-import { Problem, Lesson } from "../types";
+import { Problem, LevelLesson, Level } from "../types";
 
 const baseURL = "http://localhost:4000";
 
 const problemsURL = baseURL + "/problems";
 const lessonsURL = baseURL + "/lessons";
+const levelsURL = baseURL + "/levels";
 
 async function getData<T>(url: string): Promise<T> {
   try {
@@ -25,10 +26,18 @@ export async function getProblems(): Promise<Problem[]> {
   return await getData<Problem[]>(problemsURL);
 }
 
-export async function getLesson(lesson: string): Promise<Lesson> {
-  return await getData<Lesson>(`${lessonsURL}/${lesson}`);
+export async function getLesson(lesson: string): Promise<LevelLesson> {
+  return await getData<LevelLesson>(`${lessonsURL}/${lesson}`);
 }
 
-export async function getLessons(lesson: string): Promise<Lesson> {
-  return await getData<Lesson>(`${lessonsURL}/${lesson}`);
+export async function getLessons(): Promise<LevelLesson[]> {
+  return await getData<LevelLesson[]>(lessonsURL);
+}
+
+export async function getLevel(level: string): Promise<Level> {
+  return await getData<Level>(`${levelsURL}/${level}`);
+}
+
+export async function getLevels(): Promise<Level[]> {
+  return await getData<Level[]>(levelsURL);
 }

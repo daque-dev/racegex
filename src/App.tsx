@@ -11,6 +11,7 @@ import Navbar from "./Navbar";
 
 const Home = lazy(() => import("./Home/Home"));
 const Play = lazy(() => import("./Play/Play"));
+const Learn = lazy(() => import("./Learn/Learn"));
 
 function App() {
   return (
@@ -30,9 +31,10 @@ function App() {
               <Route path="/play">
                 <Home />
               </Route>
-              <Route path="/">
-                <Home />
-              </Route>
+              <Route exact path="/learn" component={Learn} />
+              <Route exact path="/learn/:levelId" component={Learn} />
+              <Route exact path="/learn/:levelId/:lessonId" component={Learn} />
+              <Route exact path="/" component={Home} />
             </Switch>
           </div>
         </Router>

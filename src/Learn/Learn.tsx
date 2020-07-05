@@ -1,14 +1,49 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Section from "./Section";
 
-import data from "./learn.json";
+import { useParams } from "react-router-dom";
+import { getLevels, getLevel } from "../API/api";
+import { Level } from "../types";
 
 const Learn = () => {
+  const { levelId, lessonId } = useParams();
+  const [sections, setSections] = useState((null as unknown) as Level[]);
+
+  const regLevels = useCallback(async () => {
+    setSections(await getLevels());
+  }, [setSections]);
+
+  const reqLevel = useCallback(
+    async (id) => {
+      setSections([await getLevel(id)]);
+    },
+    [setSections]
+  );
+
+  useEffect(() => {
+    if (!sections && levelId && !lessonId) {
+      reqLevel(levelId);
+    }
+    if (!sections) {
+      regLevels();
+    }
+  }, [regLevels, reqLevel, levelId, lessonId, sections]);
+
   return (
     <>
-      {(data as { title: string; subtitle: string; levels: any }[]).map((e) => (
-        <Section title={e.title} subtitle={e.subtitle} levels={e.levels} />
-      ))}
+      {sections &&
+        sections
+          .filter((e) => !levelId || e.id === levelId)
+          .map((e) => (
+            <Section
+              key={e.id}
+              title={e.title}
+              subtitle={e.subtitle}
+              lessons={e.lessons}
+              id={e.id}
+              activeLesson={lessonId}
+            />
+          ))}
     </>
   );
 };

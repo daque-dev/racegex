@@ -20,11 +20,25 @@ export type Problem = {
   description: string;
 };
 
-export type Lesson = {
-  id: number;
-  name: string;
+export type LevelLesson = {
+  id: string;
+  title: string;
+  subtitle: string;
   content: string;
   excercises: string;
-  next?: string;
+  levelId: string;
+  level: Level;
+  nextId?: string;
+  nextTitle?: string;
+  nextLevel?: string;
   prev?: string;
+  prevTitle?: string;
+  prevLevel?: string;
+};
+
+export type Level = {
+  id: string;
+  title: string;
+  subtitle: string;
+  lessons: LevelLesson[];
 };
