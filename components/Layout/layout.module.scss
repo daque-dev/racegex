@@ -1,6 +1,6 @@
 @import '../variables';
 
-.container {
+.pageContainer {
   display: flex;
   flex-direction: column;
 
@@ -9,4 +9,8 @@
   margin: auto;
 
   color: $muted-text-color;
+}
+
+.contentContainer {
+  margin-top: 2rem;
 }
