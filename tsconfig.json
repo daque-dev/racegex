@@ -25,7 +25,8 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "exclude": ["node_modules"],
