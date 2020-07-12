@@ -2,6 +2,7 @@ module.exports = {
   preset: 'ts-jest/presets/js-with-ts',
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'tsx', 'js'],
+  moduleDirectories: ['node_modules', './'],
   moduleNameMapper: {
     '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
   },
