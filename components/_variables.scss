@@ -6,8 +6,8 @@ $doc-font-size: 16 !default;
 
 /* system typefaces */
 $serif: Georgia, Times, serif !default;
-$sans-serif: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande', Arial,
-  sans-serif !default;
+$sans-serif: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI',
+  'Helvetica Neue', 'Lucida Grande', Arial, sans-serif !default;
 $monospace: Monaco, Consolas, 'Lucida Console', monospace !default;
 
 /* type scale */
@@ -24,7 +24,7 @@ $font-size-8: 0.625rem !default; // ~10px
 /*                                   Colors                                   */
 /* -------------------------------------------------------------------------- */
 
-$light-gray: #eaeced !default;
+$light-gray: #f8f8f8 !default;
 $dark-gray: #717171 !default;
 $black: #252525 !default;
 
