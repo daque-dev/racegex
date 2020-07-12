@@ -1,0 +1,12 @@
+@import '../variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 1200px;
+  max-width: 90%;
+  margin: auto;
+
+  color: $muted-text-color;
+}
