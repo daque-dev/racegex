@@ -42,7 +42,11 @@ const Section = ({
           <h3>{subtitle}</h3>
           <hr />
           {lessons.map(e => (
-            <Link href={`/learn/${id}/${e.id}`} key={e.title}>
+            <Link
+              href='/learn/[levelId]/[lessonId]'
+              as={`/learn/${id}/${e.id}`}
+              key={e.title}
+            >
               <a>
                 {e.title}
                 <span>{e.subtitle}</span>
