@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown';
 
 import { LevelLesson } from 'models';
 import { getLesson, getLevels } from 'API/api';
+import Breadcrumbs from '@components/Section/Breadcrumbs';
+import Head from 'next/head';
 
 type LessonProps = {
   data: LevelLesson;
@@ -12,6 +14,11 @@ type LessonProps = {
 const Lesson = ({ data }: LessonProps) => {
   return (
     <>
+      <Head>
+        <title>{data.title}</title>
+      </Head>
+      <title></title>
+      <Breadcrumbs lesson={data} id={data.id} title={data.title} />
       <h2>{data && data.title}</h2>
       <ReactMarkdown source={data && data.content}></ReactMarkdown>
     </>

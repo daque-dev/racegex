@@ -9,8 +9,6 @@ type LessonProps = {
 const Lesson = ({ lesson }: LessonProps) => {
   return (
     <>
-      {JSON.stringify(lesson, null, 2)}
-
       <h2>{lesson && lesson.title}</h2>
       <ReactMarkdown source={lesson && lesson.content}></ReactMarkdown>
     </>

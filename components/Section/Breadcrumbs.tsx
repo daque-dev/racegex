@@ -17,27 +17,27 @@ const Breadcrumbs = ({ id, title, lesson }: BreadcrumbsProps) => {
   return (
     <code className={styles.breadcrumbs}>
       <Link href='/learn'>
-        <a className={styles.roadmap}>Roadmap {'->'} </a>
-      </Link>{' '}
-      <Link href={`/learn/${id}`}>
-        <a className={styles.currentLevel}>{title}</a>
+        <a className={styles.roadmap}>Roadmap</a>
       </Link>
-      {' -> '}
-      <span className={styles.currentLesson}>
-        {lesson && lesson.title}
-      </span> |{' '}
+      {' > '}
+      <span className={styles.currentLesson}>{lesson && lesson.title}</span>
       {lesson && lesson.nextId && (
-        <Link
-          href={
-            sameLevel
-              ? lesson.nextId
-              : `/learn/${lesson.nextLevel}/${lesson.nextId}`
-          }
-        >
-          <a className={sameLevel ? styles.nextTitle : styles.nextLevel}>
-            Up next: {lesson.nextTitle}
-          </a>
-        </Link>
+        <>
+          {' '}
+          |{' '}
+          <Link
+            href='/learn/[levelId]/[lessonId]'
+            as={
+              sameLevel
+                ? `/learn/${lesson.levelId}/${lesson.nextId}`
+                : `/learn/${lesson.nextLevel}/${lesson.nextId}`
+            }
+          >
+            <a className={sameLevel ? styles.nextTitle : styles.nextLevel}>
+              Up next: {lesson.nextTitle}
+            </a>
+          </Link>
+        </>
       )}
     </code>
   );
