@@ -31,3 +31,5 @@ $black: #252525 !default;
 $background-color: $light-gray !default;
 $text-color: $black !default !default;
 $muted-text-color: mix(#fff, $text-color, 20%) !default !default;
+
+$gray-accent: mix(#000, $light-gray, 20%) !default;
