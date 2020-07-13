@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import Home from '../index';
+import Home from '../pages/index';
 
 describe('With Enzyme', () => {
   it('App shows "A simple example repo" in a <p> tag', () => {

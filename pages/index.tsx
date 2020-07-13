@@ -10,7 +10,7 @@ import styles from './home.module.scss';
 const cx = classnames.bind(styles);
 
 export default function Home() {
-  let copy = `Whether for pleasure, curiosity, or necessity, we'll help you learn regular expressions.`;
+  const copy = `Whether for pleasure, curiosity, or necessity, we'll help you learn regular expressions.`;
   const [regexes] = useState(
     [
       'whe\\S+',
