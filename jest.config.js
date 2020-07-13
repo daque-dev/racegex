@@ -4,7 +4,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   moduleDirectories: ['node_modules', './'],
   moduleNameMapper: {
-    '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(css|less|sass|scss)$': 'jest-transform-css',
   },
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
