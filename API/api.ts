@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 
-const baseURL = 'http://localhost:4000';
+const baseURL = 'http://api.racegex.io';
 
 import { LevelLesson, Level } from 'models';
 
