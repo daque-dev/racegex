@@ -8,6 +8,7 @@ import { getLesson } from 'API/api';
 
 import Lesson from './Lesson';
 import Breadcrumbs from './Breadcrumbs';
+import ReactMarkdown from 'react-markdown';
 
 type SectionProps = Level & {
   activeLesson: string;
@@ -35,7 +36,7 @@ const Section = ({
   }, [reqLesson, activeLesson, lessons]);
 
   return (
-    <div className={styles['section']}>
+    <div className={styles.section}>
       {!activeLesson && (
         <>
           <h2>{title}</h2>
@@ -46,11 +47,12 @@ const Section = ({
               href='/learn/[levelId]/[lessonId]'
               as={`/learn/${id}/${e.id}`}
               key={e.title}
+              passHref
             >
-              <a>
-                {e.title}
-                <span>{e.subtitle}</span>
-              </a>
+              <div className={styles.link}>
+                <h2>{e.title}</h2>
+                <ReactMarkdown source={e.subtitle} />
+              </div>
             </Link>
           ))}
         </>

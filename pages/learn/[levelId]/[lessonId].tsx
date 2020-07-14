@@ -25,6 +25,8 @@ const Lesson = ({ data }: LessonProps) => {
   );
 };
 
+Lesson.Title = 'Learn';
+
 type RouteParams = {
   params: {
     levelId: string;
