@@ -1,0 +1,84 @@
+$background: #f6f6f6;
+$green: #b8db85;
+$red: #e0a9a9;
+
+.container {
+  margin-top: 1em;
+  border-radius: 5px;
+  background-color: $background;
+  &.shouldMatch {
+    .title,
+    .test-block.successful {
+      background: $green !important;
+    }
+  }
+  &.shouldNotMatch {
+    .title,
+    .test-block.successful {
+      background: $red !important;
+    }
+  }
+
+  .header {
+    background: darken($background, 5%);
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0.5em 1em;
+      input {
+        margin-left: auto;
+      }
+      .title {
+        margin-left: -0.5em;
+        padding: 0.5em 1em;
+      }
+      .score {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+      }
+      .test-block {
+        &:last-child {
+          margin-right: 1em;
+        }
+        margin-left: 0.375em;
+        height: 0.75em;
+        width: 0.75em;
+
+        border-radius: 50%;
+        background: darken($background, 15%);
+        &.successful {
+          background: $green;
+        }
+      }
+    }
+  }
+
+  div.regex-test {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    &.shouldMatch {
+      &.successful {
+        background-color: #b8db85;
+      }
+    }
+    &.shouldNotMatch {
+      &.successful {
+        background-color: #db8585;
+      }
+    }
+    p {
+      letter-spacing: 2px;
+      padding-left: 2px;
+      display: inline;
+      border-radius: 2px;
+      &.matched {
+        background-color: #118ab2;
+        color: white;
+      }
+    }
+  }
+}

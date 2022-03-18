@@ -1,0 +1,38 @@
+[
+    {
+      "description": "## Find the valid emails\nThis is a simple regex, in the sense that we won't compare it against strict standards.\n\nA valid email address looks like: `{user}@{domain}`.\n\n- A user can contain any character, except for `@`.\n- A `domain` must contain a `domain extension`, separated by `.`. (It doesn't matter if it's a valid TDL.)\n- A `domain` can contain a `subdomain`, separated by `.`",
+      "visible": {
+        "shouldMatch": [
+          "janedoe@mydomain.com",
+          "johnDoe@mysub.domain.com",
+          "JANEDOE@MYDOMAIN.COM",
+          "JA-NE.DOE@MY-DO-MAIN.COM"
+        ],
+        "shouldNotMatch": ["@mydomain.com", "jane@domain", "jane@."]
+      },
+      "hidden": {
+        "shouldMatch": ["W1.-_2@1weSwe.sd"],
+        "shouldNotMatch": ["@", ".@.@.", "@@"]
+      }
+    },
+    {
+      "description": "## Find the valid websites\nThis is a simple regex, in the sense that we won't compare it against strict standards.\n\nA valid website looks like: `{protocol}://{domain}/{path}`\n- A protocol can be either `http` or `https`\n- A `domain` must contain a `domain extension`, separated by `.`. (It doesn't matter if it's a valid TDL.)\n- A `domain` can contain a `subdomain`, separated by `.`\n- A website can contain many `paths`, separated by `/`.\n- A website can end with a `/`.",
+      "visible": {
+        "shouldMatch": [
+          "http://wikipedia.org/",
+          "https://www.wikipedia.org/",
+          "https://www.wiki.pedia.org",
+          "https://www.1234.567.89"
+        ],
+        "shouldNotMatch": [
+          "htp://wikipedia.org/",
+          "wikipedia.org",
+          "https://wikipedia"
+        ]
+      },
+      "hidden": {
+        "shouldMatch": ["https://domain.tdl/dir/dir/dir/"],
+        "shouldNotMatch": ["http://", "https://wikipedia.", "http://.org"]
+      }
+    }
+  ]
